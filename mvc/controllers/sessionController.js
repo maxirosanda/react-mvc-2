@@ -4,12 +4,18 @@ const loggerError = require('pino')('./logs/error.log')
 
 module.exports = {
 
+    vistadatos: (req,res)=>{
+        let datos =  [req.user]
+
+          res.json({datos:datos})
+    },
+
 
     updateDatos : async (req, res, next) => { 
   
         const {nombre,mail,direccion,edad,pre_tel,tel,_id,foto}=req.body
  
-
+        console.log(req.body)
         let nuevodatos={}
         if(nombre) nuevodatos.nombre=nombre
         if(mail) nuevodatos.mail=mail
@@ -33,6 +39,10 @@ module.exports = {
 
     login: (req, res) => {
         res.json(req.user)
+    },
+
+   activo: (req, res) => {
+        res.json({activo : req.isAuthenticated()})
     },
 
     register: (req, res) => {

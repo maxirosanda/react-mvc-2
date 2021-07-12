@@ -26,10 +26,7 @@ catch (e) { loggerError.error(e) }
  exports.getProductos = async (req, res, next) => {
   try{
      producto = await Producto.find({}).lean()
-     //let comprador =JSON.stringify(req.user)
-     //comprador = JSON.parse(comprador)
-     await res.json({productos: producto,id_usuario:req.user._id}) 
-     //await res.render("productos", {productos:producto,comprador:comprador,foto_usuario:req.user.foto}) 
+     await res.json({productos: producto,id_usuario:req.user._id,activo:req.isAuthenticated()})  
   }
   catch (e) { loggerError.error(e) } 
   }
@@ -41,7 +38,7 @@ catch (e) { loggerError.error(e) }
     try{
        producto = await Producto.find({_id: id}).lean()
        mensaje = await Mensaje.find({articulo: id}).lean()
-
+      console.log(producto)
       await res.json({producto: producto,mensaje:mensaje,id_usuario:req.user._id}) 
     }
     catch (e) { loggerError.error(e) } 

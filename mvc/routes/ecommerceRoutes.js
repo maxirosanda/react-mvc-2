@@ -18,8 +18,9 @@ module.exports = app => {
   
   app.get("/facebook", passport.authenticate("facebook"));
   app.get("/facebook/callback", passport.authenticate('facebook', {successRedirect: '/agregar', failureRedirect: '/login'}));
-  
+  app.get("/activo",middlewareEditor.auth,sessionController.activo)
 
+  app.get("/datos",middlewareComprador.auth,sessionController.vistadatos)
   app.put('/actdatos',middlewareComprador.auth,sessionController.updateDatos);
 
   app.get("/agregar",middlewareEditor.auth,ProductosController.agregar)

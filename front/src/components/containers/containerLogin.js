@@ -1,11 +1,10 @@
 import React , { useState } from 'react'
 import Login from '../renders/login'
-import ButtonLink from '../Button/ButtonLink'
 const axios = require('axios');
+
 
 const ContainerLogin= () => {
     const [user, setUser] = useState({})
-
 
     const login = e => {
         e.preventDefault()
@@ -43,7 +42,6 @@ const ContainerLogin= () => {
   return <React.Fragment> 
 <div className="container mt-5">
       <h1>Login</h1>
-      <ButtonLink texto='Productos' link={`/`}></ButtonLink>
   <div className="row justify-content-center">
 
 

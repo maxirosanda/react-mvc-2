@@ -17,7 +17,7 @@ const Login = ({crearDatos,login}) => {
   <button type="submit" className="btn btn-primary">Enviar</button>
 </form>
 <a href="/facebook" className="btn btn-success my-5">Login con facebook</a>
-<a href="/registro" className="btn btn-success my-5">Registrate</a>
+<a href="/register" className="btn btn-success my-5">Registrate</a>
   </React.Fragment>
   }
   

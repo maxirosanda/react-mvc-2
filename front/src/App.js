@@ -7,13 +7,18 @@ import ContainerProducto from './components/containers/containerProducto'
 import ContainerCarrito from './components/containers/containerCarrito'
 import ContainerLogin from './components/containers/containerLogin'
 import ContainerRegister from './components/containers/containerRegister'
-
+import ContainerNavbar from "./components/containers/constainerNavbar"
+import ContainerMisDatos from "./components/containers/containerMisDatos"
+import {Context} from './Context'
 const App = () => {
 
   return (
     <React.Fragment>
     <BrowserRouter>
+    <Context>
+    <ContainerNavbar />
       <Switch>
+        <Route exact path="/datos" component={ContainerMisDatos}/>
         <Route exact path="/login" component={ContainerLogin} />
         <Route exact path="/producto/:id" component={ContainerProducto} />
         <Route exact path="/register" component={ContainerRegister} />
@@ -21,6 +26,7 @@ const App = () => {
         <Route exact path="/agregar" component={ContainerAgregar} />
         <Route path="/" component={ContainerProductos} />{" "}
       </Switch>
+      </Context>
     </BrowserRouter>
   </React.Fragment>
   );

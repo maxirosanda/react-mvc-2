@@ -1,7 +1,7 @@
 import React , { useState, useEffect } from 'react'
 import Agregar from '../renders/agregar'
-import ButtonLink from '../Button/ButtonLink'
 import { Spinner } from 'react-bootstrap'
+import {useActivoContext} from '../../Context'
 const axios = require('axios');
 
 const ContainerAgregar = () => {
@@ -9,7 +9,7 @@ const ContainerAgregar = () => {
   const [loading,setLoading] = useState(false)
   const [crearProducto, setCrearProducto] = useState({})
   const [actProducto, setActProducto] = useState({})
-  
+  const {activo} = useActivoContext()
   const crearDatos = (e) => {
     setCrearProducto({...crearProducto,[e.target.name]: e.target.value});
   };
@@ -18,32 +18,16 @@ const ContainerAgregar = () => {
     setActProducto({...actProducto,[e.target.name]: e.target.value});
   };
 
-  const logout = (e) => {
-
-    var config = {
-      method: 'get',
-      url: 'http://localhost:8080/logout',
-      headers: { 
-        'Cookie': 'connect.sid=s%3ABDGIH8xNzVQG5i6aMXZK_rNqmw6Tq9O3.8pJp1qaj%2FXOJhS78fMxtvJMPIGLA7DopkyyDe4Yz6Tg'
-      },
-      withCredentials: true
-    };
-    
-    axios(config)
-    .then(function (response) {
-     // console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
-  }
+ 
 
   // ver Productos---------------------------------------------------
   useEffect(async () => {
     
     setLoading(true)
 
+    if(activo === false ) {
+      window.location.href = "/login";
+    } 
     var config = {
       method: 'get',
       url: `http://localhost:8080/`,
@@ -55,14 +39,19 @@ const ContainerAgregar = () => {
     
     try{
     const response = await axios(config);
-      setProductos(response.data.productos)
+    setProductos(response.data.productos)
+      
     }catch(e){
+      
         console.log(e)
     }
 
       },[productos])
 
     useEffect(()=>{
+      if(activo === false ) {
+        window.location.href = "/login";
+      } 
         productos.length && setLoading(false)
     },[productos])
 
@@ -136,9 +125,7 @@ const ContainerAgregar = () => {
 
   return <React.Fragment> 
 <div className="container mt-5">
-      <h1>Agregar</h1>
-      <ButtonLink texto='Productos' link={`/`}></ButtonLink>
-     <button onClick={logout}>Cerra secion </button>
+      <h1>Edicion de Productos</h1>
   <div className="row justify-content-center">
   <form  className="my-5" onSubmit={crearproducto}>
 

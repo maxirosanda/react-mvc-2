@@ -10,9 +10,9 @@ const ContainerProducto= () => {
   const [mensajes, setMensajes] = useState({})
   const [crearMensaje, setCrearMensaje] = useState({})
   const [loading,setLoading] = useState(false)
-  const [crearProducto, setCrearProducto] = useState({})
   const { id } = useParams()
   const [idUsuario, setIdUsuario] = useState({})
+
 
   useEffect(async () => {
     setLoading(true)
@@ -39,6 +39,7 @@ const ContainerProducto= () => {
 
     useEffect(()=>{
         producto.length && setLoading(false)
+      
     },[producto])
 
     const agregarcarrito = async e => {

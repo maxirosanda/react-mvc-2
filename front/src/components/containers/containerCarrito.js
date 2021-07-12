@@ -1,6 +1,5 @@
 import React , { useState, useEffect } from 'react'
 import Carrito from '../renders/carrito'
-import ButtonLink from '../Button/ButtonLink'
 import { Spinner } from 'react-bootstrap'
 const axios = require('axios');
 
@@ -32,6 +31,7 @@ const ContainerCarrito= () => {
 
     useEffect(()=>{
         productos.length && setLoading(false)
+  
     },[productos])
     
     const borrarproducto = async e => {
@@ -50,24 +50,11 @@ const ContainerCarrito= () => {
         }catch(e) {
           console.log(e);
         }
-      /*
-      axios.delete(`http://localhost:8080/carrito/${e.target.name}`)
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-      */
+   
     }
   return <React.Fragment> 
 <div className="container mt-5">
       <h1>Carrito</h1>
-      <ButtonLink texto='Productos' link={`/`}></ButtonLink>
   <div className="row justify-content-center">
 
 { 

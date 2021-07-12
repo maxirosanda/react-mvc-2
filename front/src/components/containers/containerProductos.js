@@ -1,6 +1,5 @@
 import React , { useState, useEffect } from 'react'
 import Productos from '../renders/productos'
-import ButtonLink from '../Button/ButtonLink'
 import { Spinner } from 'react-bootstrap'
 const axios = require('axios');
 
@@ -9,7 +8,7 @@ const ContainerProductos= () => {
   const [productos, setProductos] = useState({})
   const [idUsuario, setIdUsuario] = useState({})
   const [loading,setLoading] = useState(false)
-  const [crearProducto, setCrearProducto] = useState({})
+  
 
   useEffect(async () => {
     
@@ -35,6 +34,7 @@ const ContainerProductos= () => {
 
     useEffect(()=>{
         productos.length && setLoading(false)
+      
     },[productos])
 
   
@@ -75,8 +75,6 @@ const ContainerProductos= () => {
   return <React.Fragment> 
 <div className="container mt-5">
       <h1>Productos</h1>
-      <ButtonLink texto='Ir al carrito' link={`/carrito`}></ButtonLink>
-      <ButtonLink texto='Editar lista de productos' link={`/agregar`}></ButtonLink>
   <div className="row justify-content-center">
       
      

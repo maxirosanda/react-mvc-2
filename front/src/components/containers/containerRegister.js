@@ -1,6 +1,5 @@
 import React , { useState, useEffect } from 'react'
 import Register from '../renders/register'
-import ButtonLink from '../Button/ButtonLink'
 const axios = require('axios');
 
 const ContainerRegister= () => {
@@ -28,19 +27,7 @@ const ContainerRegister= () => {
         .catch(function (error) {
           console.log(error)
           })
-     /*
-        axios.post('http://localhost:8080/register',user)
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-  */
+   
       }
 
 
@@ -54,8 +41,7 @@ const ContainerRegister= () => {
 
   return <React.Fragment> 
 <div className="container mt-5">
-      <h1>Login</h1>
-      <ButtonLink texto='Productos' link={`/`}></ButtonLink>
+      <h1>Registro</h1>
   <div className="row justify-content-center">
 
 
