@@ -5,7 +5,7 @@ const axios = require('axios');
 
 
 const ContainerMisDatos = () => {
-    const [datos, setDatos] = useState({}) 
+    const [datos, setDatos] = useState({})
     const [loading,setLoading] = useState(false)
     const [actDatos, setActDatos] = useState({})
 
@@ -44,14 +44,14 @@ const ContainerMisDatos = () => {
 //actualizar datos --------------------------------------
 const actdatos = async e => {
     e.preventDefault()
-    setActDatos({...actDatos,"_id": e.target.name});
+    let json = {...actDatos,[e.target.name]: e.target.id}
     var config = {
       method: 'put',
       url: `http://localhost:8080/actdatos`,
       headers: { 
         'Content-Type': 'application/json'
       },
-      data : actDatos,
+      data : json,
       withCredentials: true
     };
     try{
@@ -63,10 +63,9 @@ const actdatos = async e => {
       }
 
   }
-  
+
   return <React.Fragment> 
       <div className="container mt-5">
-      <h1>Mis Datos</h1>
   <div className="row justify-content-center">
   { 
         loading ? ( <Spinner animation="border" role="status"/>

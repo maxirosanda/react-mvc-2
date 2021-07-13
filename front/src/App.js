@@ -9,7 +9,9 @@ import ContainerLogin from './components/containers/containerLogin'
 import ContainerRegister from './components/containers/containerRegister'
 import ContainerNavbar from "./components/containers/constainerNavbar"
 import ContainerMisDatos from "./components/containers/containerMisDatos"
+import ContainerMisCompras from './components/containers/containerMisCompras';
 import {Context} from './Context'
+
 const App = () => {
 
   return (
@@ -18,6 +20,7 @@ const App = () => {
     <Context>
     <ContainerNavbar />
       <Switch>
+        <Route exact path="miscompras" component={ContainerMisCompras}/>
         <Route exact path="/datos" component={ContainerMisDatos}/>
         <Route exact path="/login" component={ContainerLogin} />
         <Route exact path="/producto/:id" component={ContainerProducto} />

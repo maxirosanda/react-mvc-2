@@ -5,11 +5,12 @@ const enviarwhatsapp = require('../utils/whatsapp')
 const enviarsms = require('../utils/sms')
 const loggerError = require('pino')('./logs/error.log')
 const loggerWarn = require('pino')('./logs/warn.log')
+
 exports.getPedidos = async (req, res, next) => {
-  try{
-    
+  try{  
     pedidos = await Pedido.find({id_comprador: req.user._id}).lean() 
-    await res.render("mispedidos", {pedidos:pedidos}) 
+    console.log(pedidos)
+    await res.json(pedidos) 
   }
   catch (e) { loggerError.error(e) } 
   }
@@ -19,7 +20,7 @@ exports.getPedidos = async (req, res, next) => {
       
       pendientes = await Pedido.find({}).lean()
       loggerWarn.warn(pendientes)
-      await res.render("pendientes", {pendientes:pendientes}) 
+      await res.json(pendientes) 
     }
     catch (e) {  loggerError.error(e) } 
     }
@@ -36,19 +37,8 @@ exports.createPedido = async (req, res, next) => {
           let json = {"id_comprador":encontrados[0].id_comprador,"id_vendedor":"no asignado","estado":false,"productos":encontrados,"datos_comprador":req.user,"importe":total}
           pedido = new Pedido(json)
           await pedido.save()
-
-          var d = new Date();
-          fecha = `${d.getUTCDate()}/${d.getUTCMonth() + 1}/${d.getFullYear()} ${d.getUTCHours()}:${d.getUTCMinutes()}`
-           enviarmail({
-                    from: 'maxirosandacoder@gmail.com',
-                    to: 'maxirosandacoder@gmail.com',
-                    subject: `pedido pendiente del comprador con id: ${encontrados[0].id_comprador} en la fecha ${fecha}`,
-                    html: `<a href="http://localhost:8080/pendientes" class="btn btn-success">Pendientes</a>`
-           })
-           enviarwhatsapp(encontrados[0].id_comprador,`<a href="http://localhost:8080/pendientes" class="btn btn-success">Pendientes</a>`)
-           enviarsms("su pedido esta en proceso gracias por la compra")
           await  Carrito.deleteMany({id_comprador:encontrados[0].id_comprador})
-          await res.render("pedido", {pedido:pedido})  
+          await res.send("pedido en camino")  
 
     }else
     {

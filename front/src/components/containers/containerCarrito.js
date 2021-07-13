@@ -52,10 +52,30 @@ const ContainerCarrito= () => {
         }
    
     }
+
+    const comprar = async e => {
+      var config = {
+        url: `http://localhost:8080/comprar`,
+        method: 'get',
+        headers: { 
+          'Cookie': 'connect.sid=s%3AkJ8y18B1hrC4fkfBdIGOvRoFiv0CWMwe.Ev0l5Jyd0xY%2FuGbgBfAv2Oy%2F6JF5A%2FiXJc2FpoM15fs'
+        },
+        withCredentials: true
+      };
+      try{
+        const response = await axios(config);
+    
+        }catch(e){
+            console.log(e)
+        }
+    
+
+    }
   return <React.Fragment> 
 <div className="container mt-5">
       <h1>Carrito</h1>
   <div className="row justify-content-center">
+  <button onClick={comprar} class="btn btn-success">Comprar carrito</button>
 
 { 
         loading ? (    

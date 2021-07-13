@@ -6,7 +6,7 @@ const MisDatos = ({datos,act,actdatos}) => {
 
   return <React.Fragment> 
 <h2>Mis Datos Personales</h2>
-<form onSubmit={actdatos} name={datos._id} enctype="multipart/form-data">
+<form onSubmit={actdatos} name="_id" id={datos._id} enctype="multipart/form-data">
   <div className="form-group">
     <label>Nombre de usuario</label>
     <input type="text" className="form-control" name="username" onChange={act}   aria-describedby="emailHelp" defaultValue={datos.username}/>

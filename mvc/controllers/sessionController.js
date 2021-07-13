@@ -6,7 +6,6 @@ module.exports = {
 
     vistadatos: (req,res)=>{
         let datos =  [req.user]
-
           res.json({datos:datos})
     },
 
