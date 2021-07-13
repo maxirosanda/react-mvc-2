@@ -9,7 +9,7 @@ const loggerWarn = require('pino')('./logs/warn.log')
 exports.getPedidos = async (req, res, next) => {
   try{  
     pedidos = await Pedido.find({id_comprador: req.user._id}).lean() 
-    console.log(pedidos)
+    console.log(pedidos[0])
     await res.json(pedidos) 
   }
   catch (e) { loggerError.error(e) } 

@@ -24,14 +24,14 @@ const ContainerMisCompras = () => {
     
     try{
     const response = await axios(config);
-    setPedidos(response.data.datos)
+    setPedidos(response.data)
     console.log(pedidos)
     }catch(e){
       
         console.log(e)
     }
 
-      },[pedidos])
+      },[])
 
     useEffect(()=>{
 
@@ -47,7 +47,8 @@ const ContainerMisCompras = () => {
   
         ):(  
           pedidos.length && pedidos.map((pedido) => {
-            return <MisCompras key ={pedido.actualizar}   pedido = {pedido}/>
+            
+            return <MisCompras key ={pedido._id}   pedido = {pedido}/>
        })
 
  )}

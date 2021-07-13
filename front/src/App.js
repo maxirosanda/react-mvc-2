@@ -20,7 +20,7 @@ const App = () => {
     <Context>
     <ContainerNavbar />
       <Switch>
-        <Route exact path="miscompras" component={ContainerMisCompras}/>
+        <Route exact path="/miscompras" component={ContainerMisCompras}/>
         <Route exact path="/datos" component={ContainerMisDatos}/>
         <Route exact path="/login" component={ContainerLogin} />
         <Route exact path="/producto/:id" component={ContainerProducto} />
